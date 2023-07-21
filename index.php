@@ -4,7 +4,7 @@
 <style>
 
 .button {
-  background-color: #4CAF50;
+  background-color: #04AA6D;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -15,22 +15,22 @@
   margin: 4px 2px;
   cursor: pointer;
 }
-#customers {
+table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-#customers td, #customers th {
+table td, table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(even){background-color: #f2f2f2;}
 
-#customers tr:hover {background-color: #ddd;}
+table tr:hover {background-color: #ddd;}
 
-#customers th {
+table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -44,24 +44,17 @@
 <h1>Gestion des articles</h1>
 
 
-<a href="create.html" class="button">Link Button</a>
+<a href="create.html" class="button">create</a>
 
-<table id="customers">
+<table>
   <tr>
     <th>id</th>
     <th>name</th>
     <th>price</th>
     <th>quantity</th>
-    <th>
-        
-
-    </th>
+    <th>action</th>
 
   </tr>
-
-
-
-
 
 <?php
 
@@ -83,16 +76,21 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "<tr><td> " . $row["id"]. " </td><td> " . $row["name"]. " </td><td> " .$row["price"]. " </td><td> " .$row["quantity"]. "</td></tr>";
+    echo "<tr><td> " . $row["id"]. " </td>
+    <td> " 
+    . $row["name"]. " </td><td> " .$row["price"]. " </td>
+    <td> " 
+    .$row["quantity"]. " </td>
+    <td>
+    <a href='edit.php?id=". $row["id"]. "' class= 'button'style='background-color:blue;' >edit</a> 
+    <a href=' delete.php?id=". $row["id"]. "' class='button'style='background-color:red';>delete</a>"
+    ."</td></tr>";
   }
 } else {
   echo "0 results";
 }
 $conn->close();
 ?>
-
-
-
 
 </table>
 

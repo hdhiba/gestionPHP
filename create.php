@@ -16,6 +16,7 @@ VALUES ('".$_POST["name"]."',".$_POST["price"].", ".$_POST["quantity"].")";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
+  header('Location: index.php');
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
